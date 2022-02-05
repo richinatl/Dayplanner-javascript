@@ -9,7 +9,7 @@ $(document).ready(() => {
   });
   // create function for current time and changes
   function plannerUpdate() {
-    let currentHour = moment().hours();
+    let currentHour = moment();
 
     // loop for time blocks
     $(".time-block").each(function () {
@@ -28,7 +28,7 @@ $(document).ready(() => {
       }
     });
   }
-  setInterval(plannerUpdate, 15000);
+  setInterval(plannerUpdate, 1000);
 
   // get saved data from localStorage
   $("#hour9 .description").val(localStorage.getItem("hour9"));
@@ -41,6 +41,6 @@ $(document).ready(() => {
   $("#hour16 .description").val(localStorage.getItem("hour16"));
   $("#hour17 .description").val(localStorage.getItem("hour17"));
 
-  // display current day and time
+  // display current day
   $("#currentDay").text(moment().format("dddd, MMMM Do"));
 });
