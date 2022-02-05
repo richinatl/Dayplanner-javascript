@@ -7,9 +7,9 @@ $(document).ready(() => {
     // set storage
     localStorage.setItem(time, value);
   });
-  // create function for current time
-  function plannerRefresh() {
-    const currentHour = moment().hours();
+  // create function for current time and changes
+  function plannerUpdate() {
+    let currentHour = moment().hours();
 
     // loop for time blocks
     $(".time-block").each(function () {
@@ -28,10 +28,7 @@ $(document).ready(() => {
       }
     });
   }
-  // set up interval to update current time
-
-  plannerRefresh();
-  let interval = setInterval(plannerRefresh, 10000);
+  setInterval(plannerUpdate, 15000);
 
   // get saved data from localStorage
   $("#hour9 .description").val(localStorage.getItem("hour9"));
