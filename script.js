@@ -7,18 +7,22 @@ $(document).ready(() => {
     // set storage
     localStorage.setItem(time, value);
   });
-  // create function for current time and changes
+
+  moment();
+
+  // display current day
+  $("#currentDay").text(moment().format("MMMM Do YYYY"));
+
   function plannerUpdate() {
-    let currentHour = moment();
-
-    // loop for time blocks
+    // loop over time blocks
     $(".time-block").each(function () {
-      const scheduleHour = parseInt($(this).attr("id").split("-")[1]);
+      const currentHour = moment().hours();
 
-      // Change class for css
-      if (scheduleHour < currentHour) {
+      const scheduleHour = $(this).attr("id");
+
+      if (currentHour > scheduleHour) {
         $(this).addClass("past");
-      } else if (scheduleHour === currentHour) {
+      } else if (currentHour === scheduleHour) {
         $(this).removeClass("past");
         $(this).addClass("present");
       } else {
@@ -28,19 +32,18 @@ $(document).ready(() => {
       }
     });
   }
+
+  plannerUpdate();
   setInterval(plannerUpdate, 1000);
 
   // get saved data from localStorage
-  $("#hour9 .description").val(localStorage.getItem("hour9"));
-  $("#hour10 .description").val(localStorage.getItem("hour10"));
-  $("#hour11 .description").val(localStorage.getItem("hour11"));
-  $("#hour12 .description").val(localStorage.getItem("hour12"));
-  $("#hour13 .description").val(localStorage.getItem("hour13"));
-  $("#hour14 .description").val(localStorage.getItem("hour14"));
-  $("#hour15 .description").val(localStorage.getItem("hour15"));
-  $("#hour16 .description").val(localStorage.getItem("hour16"));
-  $("#hour17 .description").val(localStorage.getItem("hour17"));
-
-  // display current day
-  $("#currentDay").text(moment().format("dddd, MMMM Do"));
+  $("#9 .description").val(localStorage.getItem("9"));
+  $("#10 .description").val(localStorage.getItem("10"));
+  $("#11 .description").val(localStorage.getItem("11"));
+  $("#12 .description").val(localStorage.getItem("12"));
+  $("#13 .description").val(localStorage.getItem("13"));
+  $("#14 .description").val(localStorage.getItem("14"));
+  $("#15 .description").val(localStorage.getItem("15"));
+  $("#16 .description").val(localStorage.getItem("16"));
+  $("#17 .description").val(localStorage.getItem("17"));
 });
